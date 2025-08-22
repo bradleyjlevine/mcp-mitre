@@ -8,14 +8,6 @@ def _get_attr_or_key(obj, key, default=None):
         return obj.get(key, default)
     return getattr(obj, key, default)
 
-def _stix_obj_to_dict(obj):
-    """Convert STIX object to dictionary representation."""
-    if obj is None:
-        return {}
-    if isinstance(obj, dict):
-        return obj
-    return {k: getattr(obj, k, None) for k in dir(obj) if not k.startswith("_") and not callable(getattr(obj, k, None))}
-
 def _extract_mitre_id(obj):
     """Extract MITRE ATT&CK ID from external references."""
     d = obj
