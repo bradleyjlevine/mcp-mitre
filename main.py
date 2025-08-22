@@ -773,4 +773,4 @@ def get_atlas_to_attack_mapping(atlas_id: str):
     return _get_atlas_to_attack_mapping(atlas_id)
 
 if __name__ == "__main__":
-    mcp.run()
+    mcp.run(transport="stdio")
