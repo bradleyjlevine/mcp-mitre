@@ -2,6 +2,34 @@
 
 A Model Context Protocol (MCP) server for querying MITRE ATT&CK and MITRE ATLAS (AI/ML) frameworks.
 
+## Installation
+
+### Requirements
+- Python 3.11 or higher
+- Dependencies:
+  - fastmcp>=2.11.3
+  - mitreattack-python>=5.0.0
+  - pyyaml>=6.0.2
+
+### Setup
+1. Clone this repository
+2. Install dependencies:
+   ```bash
+   pip install -e .
+   ```
+3. Run the MCP server:
+   ```bash
+   python main.py
+   ```
+
+## Project Structure
+- `main.py` - Main MCP server implementation
+- `enterprise-attack.json` - ATT&CK Enterprise framework data
+- `mobile-attack.json` - ATT&CK Mobile framework data  
+- `ics-attack.json` - ATT&CK ICS framework data
+- `ATLAS.yaml` - MITRE ATLAS AI/ML framework data
+- `test_mcp_tools.py` - Test suite for MCP tools
+
 ## Available Tool Functions
 
 ### ATT&CK Framework Tools
@@ -51,6 +79,48 @@ A Model Context Protocol (MCP) server for querying MITRE ATT&CK and MITRE ATLAS 
 #### Cross-Framework Mapping
 - `get_atlas_to_attack_mapping(atlas_id)` - Get corresponding ATT&CK mappings for ATLAS items
 
-## Usage
+## Usage Examples
+
+### Basic Technique Lookup
+```python
+# Get a specific ATT&CK technique
+get_technique_by_id("T1055")
+
+# Search for techniques by name
+search_by_name("process injection", "techniques")
+```
+
+### Group Analysis
+```python
+# Get information about a threat group
+get_group_by_alias("APT29")
+
+# Find software used by a group
+get_software_used_by_group("APT29")
+
+# Find techniques used by a group
+get_techniques_used_by_group("APT29")
+```
+
+### ATLAS AI/ML Framework
+```python
+# Get ATLAS techniques
+get_atlas_techniques()
+
+# Get specific ATLAS technique
+get_atlas_technique_by_id("AML.T0001")
+
+# Map ATLAS to ATT&CK
+get_atlas_to_attack_mapping("AML.T0001")
+```
+
+### Tactic and Mitigation Analysis
+```python
+# Get techniques for a specific tactic
+get_techniques_by_tactic("TA0001")
+
+# Find mitigations for a technique
+get_mitigations_for_technique("T1055")
+```
 
 All functions return structured JSON data with consistent formatting for easy integration with MCP-compatible tools and applications.
