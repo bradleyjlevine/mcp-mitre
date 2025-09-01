@@ -297,11 +297,13 @@ def get_group_by_alias(group_alias: str):
     """MCP tool wrapper for getting ATT&CK group by alias."""
     return _get_group_by_alias(group_alias)
 
-def _get_software_used_by_group(group_alias):
+def _get_software_used_by_group(group_alias, limit=20, offset=0):
     """Get software used by a specific ATT&CK group.
     
     Args:
         group_alias: Group alias like 'APT29', 'G0016', etc.
+        limit: Maximum number of items to return
+        offset: Number of items to skip
         
     Returns:
         Dict with 'items' (list of software summaries) and 'total' count
@@ -318,29 +320,34 @@ def _get_software_used_by_group(group_alias):
     
     # Use the built-in method to get software used by this group
     software_objects = attack_data.get_software_used_by_group(group_stix_id)
-    software_list = []
+    all_software = []
     
     for s in software_objects:
         # The software objects are wrapped in a dict with 'object' key
         software_obj = s.get('object') if isinstance(s, dict) and 'object' in s else s
-        software_list.append(_summary(software_obj))
+        all_software.append(_summary(software_obj))
     
-    return {"items": software_list, "total": len(software_list)}
+    # Apply pagination
+    paged = all_software[offset:offset+limit]
+    
+    return {"items": paged, "total": len(all_software)}
 
 @mcp.tool(
     name="get_software_used_by_group",
     description="Return software used by a specific ATT&CK group. Use group alias like 'APT29', 'G0016', etc.",
     output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
 )
-def get_software_used_by_group(group_alias: str):
+def get_software_used_by_group(group_alias: str, limit: int = 20, offset: int = 0):
     """MCP tool wrapper for getting software used by group."""
-    return _get_software_used_by_group(group_alias)
+    return _get_software_used_by_group(group_alias, limit, offset)
 
-def _get_techniques_used_by_group(group_alias):
+def _get_techniques_used_by_group(group_alias, limit=20, offset=0):
     """Get techniques used by a specific ATT&CK group.
     
     Args:
         group_alias: Group alias like 'APT29', 'G0016', etc.
+        limit: Maximum number of items to return
+        offset: Number of items to skip
         
     Returns:
         Dict with 'items' (list of technique summaries) and 'total' count
@@ -357,23 +364,26 @@ def _get_techniques_used_by_group(group_alias):
     
     # Use the built-in method to get techniques used by this group
     technique_objects = attack_data.get_techniques_used_by_group(group_stix_id)
-    technique_list = []
+    all_techniques = []
     
     for t in technique_objects:
         # The technique objects are wrapped in a dict with 'object' key
         technique_obj = t.get('object') if isinstance(t, dict) and 'object' in t else t
-        technique_list.append(_summary(technique_obj))
+        all_techniques.append(_summary(technique_obj))
     
-    return {"items": technique_list, "total": len(technique_list)}
+    # Apply pagination
+    paged = all_techniques[offset:offset+limit]
+    
+    return {"items": paged, "total": len(all_techniques)}
 
 @mcp.tool(
     name="get_techniques_used_by_group",
     description="Return techniques used by a specific ATT&CK group. Use group alias like 'APT29', 'G0016', etc.",
     output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
 )
-def get_techniques_used_by_group(group_alias: str):
+def get_techniques_used_by_group(group_alias: str, limit: int = 20, offset: int = 0):
     """MCP tool wrapper for getting techniques used by group."""
-    return _get_techniques_used_by_group(group_alias)
+    return _get_techniques_used_by_group(group_alias, limit, offset)
 
 def _get_techniques_by_tactic(tactic_id, limit=20, offset=0):
     """Get techniques that belong to a specific tactic.

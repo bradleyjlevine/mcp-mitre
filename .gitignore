@@ -9,4 +9,8 @@ wheels/
 # Virtual environments
 .venv
 
+#env files
+.env
+*.env
+
 .fake
