@@ -22,6 +22,28 @@ A Model Context Protocol (MCP) server for querying MITRE ATT&CK and MITRE ATLAS 
    python main.py
    ```
 
+### Command Line Options
+
+The server supports the following command-line options:
+
+- `--transport {stdio,streamable-http}`: Transport mechanism to use (default: stdio)
+- `--host HOST`: Host address for HTTP transport (default: 127.0.0.1)
+- `--port PORT`: Port for HTTP transport (default: 8000)
+- `--path PATH`: URL path for HTTP transport (default: /mcp)
+
+Examples:
+
+```bash
+# Run with stdio transport (default)
+python main.py
+
+# Run with streamable-http transport
+python main.py --transport streamable-http
+
+# Run with streamable-http on custom host and port
+python main.py --transport streamable-http --host 0.0.0.0 --port 9000
+```
+
 ## Project Structure
 - `main.py` - Main MCP server implementation
 - `enterprise-attack.json` - ATT&CK Enterprise framework data

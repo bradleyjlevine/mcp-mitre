@@ -1,6 +1,7 @@
 from fastmcp import FastMCP
 from mitreattack.stix20 import MitreAttackData
 import yaml
+import argparse
 
 def _get_attr_or_key(obj, key, default=None):
     """Get attribute from object or key from dict, with fallback to default."""
@@ -783,4 +784,39 @@ def get_atlas_to_attack_mapping(atlas_id: str):
     return _get_atlas_to_attack_mapping(atlas_id)
 
 if __name__ == "__main__":
-    mcp.run(transport="stdio")
+    parser = argparse.ArgumentParser(description="MITRE ATT&CK + ATLAS MCP Server")
+    parser.add_argument(
+        "--transport",
+        type=str,
+        choices=["stdio", "streamable-http"],
+        default="stdio",
+        help="Transport mechanism to use for the MCP server (stdio or streamable-http)"
+    )
+    parser.add_argument(
+        "--host",
+        default="127.0.0.1",
+        help="Host address for HTTP transport (default: 127.0.0.1)"
+    )
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=8000,
+        help="Port for HTTP transport (default: 8000)"
+    )
+    parser.add_argument(
+        "--path",
+        default="/mcp",
+        help="URL path for HTTP transport (default: /mcp)"
+    )
+    args = parser.parse_args()
+
+    # Run with the selected transport
+    if args.transport == "stdio":
+        mcp.run(transport="stdio")
+    else:
+        mcp.run(
+            transport="streamable-http",
+            host=args.host,
+            port=args.port,
+            path=args.path
+        )
