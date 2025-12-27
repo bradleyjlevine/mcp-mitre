@@ -1,5 +1,7 @@
 from fastmcp import FastMCP
-from mitreattack.stix20 import MitreAttackData
+# Comment out the original import and use our custom wrapper
+# from mitreattack.stix20 import MitreAttackData
+from attack_data_wrapper import load_attack_data
 import yaml
 import argparse
 
@@ -60,7 +62,8 @@ def _atlas_find_by_id(collection, query_id):
     return {}
 
 # --- Load ATT&CK and ATLAS data
-attack_data = MitreAttackData("enterprise-attack.json")
+# Use our custom wrapper instead of MitreAttackData
+attack_data = load_attack_data("enterprise-attack.json")
 with open("ATLAS.yaml", "r") as f:
     atlas_data = yaml.safe_load(f)
 atlas_matrix = atlas_data["matrices"][0]
