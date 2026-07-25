@@ -101,7 +101,8 @@ def _get_techniques(limit=20, offset=0):
 @mcp.tool(
     name="get_techniques",
     description="Return a paginated summary list of ATT&CK techniques.",
-    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
+    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_techniques(limit: int = 20, offset: int = 0):
     """MCP tool wrapper for getting ATT&CK techniques."""
@@ -114,7 +115,8 @@ def _get_tactics(limit=20, offset=0):
 @mcp.tool(
     name="get_tactics",
     description="Return a paginated summary list of ATT&CK tactics.",
-    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
+    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_tactics(limit: int = 20, offset: int = 0):
     """MCP tool wrapper for getting ATT&CK tactics."""
@@ -127,7 +129,8 @@ def _get_groups(limit=20, offset=0):
 @mcp.tool(
     name="get_groups",
     description="Return a paginated summary list of ATT&CK groups.",
-    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
+    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_groups(limit: int = 20, offset: int = 0):
     """MCP tool wrapper for getting ATT&CK groups."""
@@ -140,7 +143,8 @@ def _get_software(limit=20, offset=0):
 @mcp.tool(
     name="get_software",
     description="Return a paginated summary list of ATT&CK software.",
-    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
+    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_software(limit: int = 20, offset: int = 0):
     """MCP tool wrapper for getting ATT&CK software."""
@@ -153,7 +157,8 @@ def _get_mitigations(limit=20, offset=0):
 @mcp.tool(
     name="get_mitigations",
     description="Return a paginated summary list of ATT&CK mitigations.",
-    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
+    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_mitigations(limit: int = 20, offset: int = 0):
     """MCP tool wrapper for getting ATT&CK mitigations."""
@@ -192,7 +197,8 @@ def _get_technique_by_id(technique_id):
 @mcp.tool(
     name="get_technique_by_id",
     description="Return full ATT&CK technique object for MITRE technique ID (e.g., 'T1055').",
-    output_schema={"type": "object"}
+    output_schema={"type": "object"},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_technique_by_id(technique_id: str):
     """MCP tool wrapper for getting ATT&CK technique by ID."""
@@ -225,7 +231,8 @@ def _get_tactic_by_id(tactic_id):
 @mcp.tool(
     name="get_tactic_by_id",
     description="Return full ATT&CK tactic object for MITRE tactic ID (e.g., 'TA0001').",
-    output_schema={"type": "object"}
+    output_schema={"type": "object"},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_tactic_by_id(tactic_id: str):
     """MCP tool wrapper for getting ATT&CK tactic by ID."""
@@ -259,7 +266,8 @@ def _get_mitigation_by_id(mitigation_id):
 @mcp.tool(
     name="get_mitigation_by_id",
     description="Return full ATT&CK mitigation object for MITRE mitigation ID (e.g., 'M1036').",
-    output_schema={"type": "object"}
+    output_schema={"type": "object"},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_mitigation_by_id(mitigation_id: str):
     """MCP tool wrapper for getting ATT&CK mitigation by ID."""
@@ -295,7 +303,8 @@ def _get_group_by_alias(group_alias):
 @mcp.tool(
     name="get_group_by_alias",
     description="Return full ATT&CK group object for MITRE mitigation ID (e.g., 'G0019').  You must use one of the aliases the group is known by, for example G0019 is know by 'APT29' or 'UNC2452' or 'UNC3524' or 'Midnight Blizzard'.  This is case-sensitive.",
-    output_schema={"type": "object"}
+    output_schema={"type": "object"},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_group_by_alias(group_alias: str):
     """MCP tool wrapper for getting ATT&CK group by alias."""
@@ -339,7 +348,8 @@ def _get_software_used_by_group(group_alias, limit=20, offset=0):
 @mcp.tool(
     name="get_software_used_by_group",
     description="Return software used by a specific ATT&CK group. Use group alias like 'APT29', 'G0016', etc.",
-    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
+    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_software_used_by_group(group_alias: str, limit: int = 20, offset: int = 0):
     """MCP tool wrapper for getting software used by group."""
@@ -383,7 +393,8 @@ def _get_techniques_used_by_group(group_alias, limit=20, offset=0):
 @mcp.tool(
     name="get_techniques_used_by_group",
     description="Return techniques used by a specific ATT&CK group. Use group alias like 'APT29', 'G0016', etc.",
-    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
+    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_techniques_used_by_group(group_alias: str, limit: int = 20, offset: int = 0):
     """MCP tool wrapper for getting techniques used by group."""
@@ -423,7 +434,8 @@ def _get_techniques_by_tactic(tactic_id, limit=20, offset=0):
 @mcp.tool(
     name="get_techniques_by_tactic",
     description="Return techniques that belong to a specific ATT&CK tactic. Use tactic ID like 'TA0001', 'TA0002', etc.",
-    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
+    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_techniques_by_tactic(tactic_id: str, limit: int = 20, offset: int = 0):
     """MCP tool wrapper for getting techniques by tactic."""
@@ -472,7 +484,8 @@ def _get_mitigations_for_technique(technique_id):
 @mcp.tool(
     name="get_mitigations_for_technique",
     description="Return mitigations that counter a specific ATT&CK technique. Use technique ID like 'T1055', 'T1003', etc.",
-    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
+    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_mitigations_for_technique(technique_id: str):
     """MCP tool wrapper for getting mitigations for technique."""
@@ -531,7 +544,8 @@ def _search_by_name(query, object_type="all", limit=20):
 @mcp.tool(
     name="search_by_name",
     description="Search ATT&CK objects by name. Use object_type to filter: 'all', 'techniques', 'tactics', 'groups', 'software', 'mitigations'.",
-    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
+    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def search_by_name(query: str, object_type: str = "all", limit: int = 20):
     """MCP tool wrapper for searching by name."""
@@ -548,7 +562,8 @@ def _get_atlas_techniques(limit=20, offset=0):
 @mcp.tool(
     name="get_atlas_techniques",
     description="Return a paginated summary list of ATLAS techniques.",
-    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
+    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_atlas_techniques(limit: int = 20, offset: int = 0):
     """MCP tool wrapper for getting ATLAS techniques."""
@@ -563,7 +578,8 @@ def _get_atlas_tactics(limit=20, offset=0):
 @mcp.tool(
     name="get_atlas_tactics",
     description="Return a paginated summary list of ATLAS tactics.",
-    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
+    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_atlas_tactics(limit: int = 20, offset: int = 0):
     """MCP tool wrapper for getting ATLAS tactics."""
@@ -578,7 +594,8 @@ def _get_atlas_mitigations(limit=20, offset=0):
 @mcp.tool(
     name="get_atlas_mitigations",
     description="Return a paginated summary list of ATLAS mitigations.",
-    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
+    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_atlas_mitigations(limit: int = 20, offset: int = 0):
     """MCP tool wrapper for getting ATLAS mitigations."""
@@ -593,7 +610,8 @@ def _get_atlas_technique_by_id(technique_id):
 @mcp.tool(
     name="get_atlas_technique_by_id",
     description="Return the full ATLAS technique object for ATLAS ID (e.g., 'AML.T0001').",
-    output_schema={"type": "object"}
+    output_schema={"type": "object"},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_atlas_technique_by_id(technique_id: str):
     """MCP tool wrapper for getting ATLAS technique by ID."""
@@ -606,7 +624,8 @@ def _get_atlas_tactic_by_id(tactic_id):
 @mcp.tool(
     name="get_atlas_tactic_by_id",
     description="Return the full ATLAS tactic object for ATLAS or ATT&CK ID (e.g., 'AML.TA0002', 'TA0043').",
-    output_schema={"type": "object"}
+    output_schema={"type": "object"},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_atlas_tactic_by_id(tactic_id: str):
     """MCP tool wrapper for getting ATLAS tactic by ID."""
@@ -619,7 +638,8 @@ def _get_atlas_mitigation_by_id(mitigation_id):
 @mcp.tool(
     name="get_atlas_mitigation_by_id",
     description="Return the full ATLAS mitigation object for ATLAS ID (e.g., 'AML.M0001').",
-    output_schema={"type": "object"}
+    output_schema={"type": "object"},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_atlas_mitigation_by_id(mitigation_id: str):
     """MCP tool wrapper for getting ATLAS mitigation by ID."""
@@ -677,7 +697,8 @@ def _search_atlas_by_name(query, object_type="all", limit=20):
 @mcp.tool(
     name="search_atlas_by_name",
     description="Search ATLAS objects by name. Use object_type to filter: 'all', 'techniques', 'tactics', 'mitigations'.",
-    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
+    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def search_atlas_by_name(query: str, object_type: str = "all", limit: int = 20):
     """MCP tool wrapper for searching ATLAS by name."""
@@ -721,7 +742,8 @@ def _get_atlas_techniques_by_tactic(tactic_id, limit=20, offset=0):
 @mcp.tool(
     name="get_atlas_techniques_by_tactic",
     description="Return ATLAS techniques that belong to a specific tactic. Use ATLAS tactic ID like 'AML.TA0002' or ATT&CK ID like 'TA0043'.",
-    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}}
+    output_schema={"type": "object", "properties": {"items": {"type": "array", "items": {"type": "object"}}, "total": {"type": "integer"}}},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_atlas_techniques_by_tactic(tactic_id: str, limit: int = 20, offset: int = 0):
     """MCP tool wrapper for getting ATLAS techniques by tactic."""
@@ -780,7 +802,8 @@ def _get_atlas_to_attack_mapping(atlas_id):
 @mcp.tool(
     name="get_atlas_to_attack_mapping",
     description="Get corresponding ATT&CK mappings for an ATLAS item. Use ATLAS ID like 'AML.T0001', 'AML.TA0002', 'AML.M0001'.",
-    output_schema={"type": "object"}
+    output_schema={"type": "object"},
+    annotations={"readOnlyHint": True, "destructiveHint": False, "idempotentHint": True, "openWorldHint": False}
 )
 def get_atlas_to_attack_mapping(atlas_id: str):
     """MCP tool wrapper for getting ATLAS to ATT&CK mappings."""
